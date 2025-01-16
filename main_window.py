@@ -1,32 +1,30 @@
-from PySide6.QtWidgets import QWidget, QPushButton, QSlider, QHBoxLayout
+from PySide6.QtWidgets import QWidget, QPushButton
+from ui_mainwindow import Ui_MainWindow
 
 
-class MainWindow(QWidget):
+class MainWindow(QWidget, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         
+        self.setupUi(self)
         self.setWindowTitle("Aquarium Smart")
         
-        button = QPushButton("Press me!!!")
-        button.setCheckable(True)
-        #self.setCentralWidget(button)
-        button.clicked.connect(self.button_clicked)
+        self.dsb_a.clicked.connect(self.dsb_a_launch)
+        self.ber_a.clicked.connect(self.ber_a_launch)
+        self.tests.clicked.connect(self.tests_launch)
+        self.settings.clicked.connect(self.settings_launch)
 
-        slider = QSlider()
-        slider.setMinimum(0)
-        slider.setMaximum(100)
-        slider.setValue(50)
-        slider.valueChanged.connect(self.respond_to_slider)
-
-        layout = QHBoxLayout()
-        layout.addWidget(button)
-        layout.addWidget(slider)
-        self.setLayout(layout)
+    def dsb_a_launch(self):
+        print("DSB!!!")
     
+    def ber_a_launch(self):
+        print("Berlinese!!!")
     
-    def button_clicked(self, data):
-            print("cliccato!!!", data)
+    def tests_launch(self):
+        print("Tests!!!")
+    
+    def settings_launch(self):
+        print("Settings!!!")
         
-    def respond_to_slider(data):
-            print("slider Value: ", data)
+  
 
