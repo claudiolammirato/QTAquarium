@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QWidget, QPushButton
 from ui_mainwindow import Ui_MainWindow
+from dsb_aquarium import DsbAquarium
 
 
 class MainWindow(QWidget, Ui_MainWindow):
@@ -8,6 +9,8 @@ class MainWindow(QWidget, Ui_MainWindow):
         
         self.setupUi(self)
         self.setWindowTitle("Aquarium Smart")
+
+        self.dsbaquarium = DsbAquarium()
         
         self.dsb_a.clicked.connect(self.dsb_a_launch)
         self.ber_a.clicked.connect(self.ber_a_launch)
@@ -15,6 +18,7 @@ class MainWindow(QWidget, Ui_MainWindow):
         self.settings.clicked.connect(self.settings_launch)
 
     def dsb_a_launch(self):
+        self.dsbaquarium.showMaximized()
         print("DSB!!!")
     
     def ber_a_launch(self):
