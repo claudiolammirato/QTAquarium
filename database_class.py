@@ -1,14 +1,20 @@
 import psycopg2
+from setting_class import ConfigClass
+
+
 
 class DatabaseManager():
     def __init__(self):
         super().__init__()
 
-        self.conn = psycopg2.connect(database="qtaquarium",
-                        host="192.168.1.113",
-                        user="",
-                        password="",
-                        port="5432")
+        settings = ConfigClass()
+        settings_loaded = settings.load_item("settings")
+
+        self.conn = psycopg2.connect(database=settings_loaded['database']['name'],
+                        host=settings_loaded["database"]["url"],
+                        user=settings_loaded["database"]["username"],
+                        password=settings_loaded["database"]["password"],
+                        port=settings_loaded["database"]["port"])
 
         self.cursor = self.conn.cursor()
     def table_creation(self, table_name):

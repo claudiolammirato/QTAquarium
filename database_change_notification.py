@@ -1,29 +1,26 @@
-import os
+import select
 import psycopg2
-import asyncio
+import psycopg2.extensions
+from setting_class import ConfigClass
 
-def run_main():
-    conn = psycopg2.connect(host="192.168.1.113", dbname="qtaquarium", user="", password="")
+settings = ConfigClass()
+settings_loaded = settings.load_item("settings")
+conn = psycopg2.connect(database=settings_loaded['database']['name'],
+                        host=settings_loaded["database"]["url"],
+                        user=settings_loaded["database"]["username"],
+                        password=settings_loaded["database"]["password"],
+                        port=settings_loaded["database"]["port"])
+conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
-    cursor = conn.cursor()
-    cursor.execute(f"LISTEN match_updates;")
-    conn.commit()
+curs = conn.cursor()
+curs.execute("LISTEN device_snapshot_change;")
 
-    def handle_notify():
-        try:
-            for notify in conn.notifies(stop_after=0):
-                print(notify.payload)
-        except:
-            print('Error occurred')
-            raise
-
-    loop = asyncio.get_event_loop()
-    loop.add_reader(conn, handle_notify)
-    loop.run_forever()
-
-if __name__ == "__main__":
-    try:
-        print(f'Starting')
-        run_main()
-    finally:
-        print('Exiting')
+print("Waiting for notifications on channel 'test'")
+while True:
+    if select.select([conn],[],[],5) == ([],[],[]):
+        print("Timeout")
+    else:
+        conn.poll()
+        while conn.notifies:
+            notify = conn.notifies.pop(0)
+            print("Got NOTIFY:", notify.pid, notify.channel, notify.payload)
