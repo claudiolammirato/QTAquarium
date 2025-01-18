@@ -1,8 +1,6 @@
 import psycopg2
 from setting_class import ConfigClass
 
-
-
 class DatabaseManager():
     def __init__(self):
         super().__init__()
@@ -17,6 +15,8 @@ class DatabaseManager():
                         port=settings_loaded["database"]["port"])
 
         self.cursor = self.conn.cursor()
+    
+    #FUNCTION TO CREATE TABLE
     def table_creation(self, table_name, table_string):
 
         testo='''CREATE TABLE '''+table_name+''' ('''
@@ -35,10 +35,30 @@ class DatabaseManager():
         self.cursor.close()
         self.conn.close()
 
-    def insert_value(self, table_name, field,id_value, name_value):
-        insert_value = '''INSERT INTO '''+table_name+''' (stf_id, stf_name) VALUES('%s', '%s');'''%(id_value, name_value)
-        self.cursor.execute(insert_value)
-        self.conn.commit()
+    #FUNCTION TO INSERT VALUES
+    def insert_value(self, table_name, values):
+        
+        testo='''INSERT INTO '''+table_name+''' ('''
+
+        for x in values:
+            if(x[0] != "id"):
+                testo = testo + x[0]+","
+        testo = testo[0:-1] + ") VALUES("
+        for x in values:
+            if(x[0] != "id"):
+                if(isinstance(x[1], str)):
+                    testo = testo +"'"+x[1]+"'"+","
+                else:
+                    testo = testo + str(x[1])+","
+
+        testo = testo[0:-1] + ")"
+        print(testo)
+        insert_value = testo
+        try:
+            self.cursor.execute(insert_value)
+            self.conn.commit()
+        except:
+            print("error inserting values")
         self.cursor.close()
         self.conn.close()
 
