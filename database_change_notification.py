@@ -1,6 +1,8 @@
 import select
 import psycopg2
 import psycopg2.extensions
+import json
+
 from setting_class import ConfigClass
 
 settings = ConfigClass()
@@ -24,3 +26,5 @@ while True:
         while conn.notifies:
             notify = conn.notifies.pop(0)
             print("Got NOTIFY:", notify.pid, notify.channel, notify.payload)
+            y = json.loads(notify.payload)
+            print(y["stf_name"])
