@@ -17,16 +17,21 @@ class DatabaseManager():
                         port=settings_loaded["database"]["port"])
 
         self.cursor = self.conn.cursor()
-    def table_creation(self, table_name):
+    def table_creation(self, table_name, table_string):
 
-        table_creation = '''
-        CREATE TABLE '''+table_name+''' (
-            stf_id SERIAL PRIMARY KEY,
-            stf_name TEXT NOT NULL
-        )
-        '''
-        self.cursor.execute(table_creation)
-        self.conn.commit()
+        testo='''CREATE TABLE '''+table_name+''' ('''
+
+        for x in table_string:
+            testo = testo + x[0]+" "+x[1]+ ","
+        testo = testo[0:-1] + ");"
+        print(testo)
+
+        table_creation = testo
+        try:
+            self.cursor.execute(table_creation)
+            self.conn.commit()
+        except:
+            print("error - might already exists")
         self.cursor.close()
         self.conn.close()
 
