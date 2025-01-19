@@ -1,11 +1,29 @@
 from PySide6 import QtWidgets
 from main_window import MainWindow
-from dsb_aquarium import DsbAquarium
+from database_class import DatabaseManager
+from create_database import create_database
 import sys
 
-app =QtWidgets.QApplication(sys.argv)
+def main():
+    #DATABASE Settings
+    create_database("qtaquarium")
 
-window = MainWindow()
-window.showMaximized()
+    #CREATE Tables
+    database = DatabaseManager()
+    table_string_DSB=(["id","SERIAL PRIMARY KEY"],["name", "TEXT NOT NULL"],["cognome", "TEXT"])
+    DatabaseManager.table_creation(database,"DSB", table_string_DSB)
 
-app.exec()
+
+
+
+    #GUI Settings
+    app =QtWidgets.QApplication(sys.argv)
+
+    window = MainWindow()
+    window.showMaximized()
+
+    app.exec()
+
+
+if __name__ == "__main__":
+    main()

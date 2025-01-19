@@ -1,7 +1,4 @@
 import psycopg2
-from psycopg2 import sql
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT # <-- ADD THIS LINE
-
 from setting_class import ConfigClass
 
 class DatabaseManager():
@@ -19,20 +16,7 @@ class DatabaseManager():
 
         self.cursor = self.conn.cursor()
 
-    #CREATE DATABASE
-    def create_database(self, database_name):
-        try:
-            create_database = '''CREATE DATABASE '''+database_name
-            self.conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT) # <-- ADD THIS LINE
-
-            #print(sql.SQL('CREATE DATABASE {};').format(sql.Identifier(database_name)))
-            self.cursor.execute(sql.SQL('CREATE DATABASE {};').format(sql.Identifier(database_name)))
-            #self.cursor.execute(create_database)
-        except:
-            print("Database already exist")
-        self.conn.commit()
-        self.cursor.close()
-        self.conn.close()
+    
 
 
 
@@ -44,12 +28,13 @@ class DatabaseManager():
         for x in table_string:
             testo = testo + x[0]+" "+x[1]+ ","
         testo = testo[0:-1] + ");"
-        print(testo)
+        #print(testo)
 
         table_creation = testo
         try:
             self.cursor.execute(table_creation)
             self.conn.commit()
+            print("Table Created!!!")
         except:
             print("error - might already exists")
         self.cursor.close()
