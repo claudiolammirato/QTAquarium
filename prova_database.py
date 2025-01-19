@@ -8,6 +8,11 @@ table_string=(["id","SERIAL PRIMARY KEY"],["name", "TEXT NOT NULL"],["cognome", 
 
 #DatabaseManager.table_creation(database,"aquarium",table_string)
 
-DatabaseManager.insert_value(database,"aquarium",values)
+#DatabaseManager.insert_value(database,"aquarium",values)
+
+#DatabaseManager.delete_value(database, "aquarium", 1)
+
+DatabaseManager.update_value(database, "aquarium", 3, "name", 1)
+
 
 #database.insert_value("claudio",0,5,"Marta")

@@ -61,17 +61,20 @@ class DatabaseManager():
             print("error inserting values")
         self.cursor.close()
         self.conn.close()
-
-    def delete_value(self, table_name, field,id_value):
-        insert_value = '''DELETE FROM '''+table_name+''' WHERE stf_id = %s;'''%(id_value)
+    
+    #FUNCTION TO DELETE VALUES
+    def delete_value(self, table_name,id):
+        insert_value = '''DELETE FROM '''+table_name+''' WHERE id ='''+str(id)+''';'''
         self.cursor.execute(insert_value)
         self.conn.commit()
         self.cursor.close()
         self.conn.close()
 
-    def update_value(self, table_name, field,id_value):
-        update_value = '''UPDATE '''+table_name+''' SET stf_name='Marco' WHERE stf_id = %s;'''%(id_value)
-        self.cursor.execute(update_value)
+    #FUNCTION TO UPDATE VALUES
+    def update_value(self, table_name,id,field,value):
+        update_value = '''UPDATE '''+table_name+''' SET '''+field+'''=%s WHERE id='''+str(id)+''';'''
+        print(update_value)
+        self.cursor.execute(update_value, (value,))
         self.conn.commit()
         self.cursor.close()
         self.conn.close()
