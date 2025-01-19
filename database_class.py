@@ -1,4 +1,7 @@
 import psycopg2
+from psycopg2 import sql
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT # <-- ADD THIS LINE
+
 from setting_class import ConfigClass
 
 class DatabaseManager():
@@ -15,7 +18,24 @@ class DatabaseManager():
                         port=settings_loaded["database"]["port"])
 
         self.cursor = self.conn.cursor()
-    
+
+    #CREATE DATABASE
+    def create_database(self, database_name):
+        try:
+            create_database = '''CREATE DATABASE '''+database_name
+            self.conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT) # <-- ADD THIS LINE
+
+            #print(sql.SQL('CREATE DATABASE {};').format(sql.Identifier(database_name)))
+            self.cursor.execute(sql.SQL('CREATE DATABASE {};').format(sql.Identifier(database_name)))
+            #self.cursor.execute(create_database)
+        except:
+            print("Database already exist")
+        self.conn.commit()
+        self.cursor.close()
+        self.conn.close()
+
+
+
     #FUNCTION TO CREATE TABLE
     def table_creation(self, table_name, table_string):
 
