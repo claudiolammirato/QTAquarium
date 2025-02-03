@@ -92,8 +92,8 @@ class DatabaseManager():
         print(update_value)
         self.cursor.execute(update_value)
         data = self.cursor.fetchall()
-        self.cursor.close()
-        self.conn.close()
+        #self.cursor.close()
+        #self.conn.close()
         return data
 
          
