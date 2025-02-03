@@ -83,3 +83,17 @@ class DatabaseManager():
         self.conn.commit()
         self.cursor.close()
         self.conn.close()
+
+
+
+    #FUNCTION TO READ ALL VALUES
+    def read_all_values(self, table_name):
+        update_value = '''SELECT * FROM '''+table_name+''';'''
+        print(update_value)
+        self.cursor.execute(update_value)
+        data = self.cursor.fetchall()
+        self.cursor.close()
+        self.conn.close()
+        return data
+
+         

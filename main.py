@@ -3,6 +3,7 @@ from main_window import MainWindow
 from database_class import DatabaseManager
 from create_database import create_database
 import sys
+import time
 
 def main():
     #DATABASE Settings
@@ -10,8 +11,13 @@ def main():
 
     #CREATE Tables
     database = DatabaseManager()
-    table_string_DSB=(["id","SERIAL PRIMARY KEY"],["name", "TEXT NOT NULL"],["cognome", "TEXT"])
-    DatabaseManager.table_creation(database,"DSB", table_string_DSB)
+    #CREATE TABLE IF NOT EXISTS
+    table_string_DS18=(["id","SERIAL PRIMARY KEY"],["aquarium_name", "TEXT"],["sensor_type", "TEXT"], ["data_temp", "REAL"],["date", "TEXT"])
+    DatabaseManager.table_creation(database, "ds18", table_string_DS18)
+    time.sleep(5)
+    table_string_DHT=(["id","SERIAL PRIMARY KEY"],["aquarium_name", "TEXT"],["sensor_type", "TEXT"], ["data_temp", "REAL"],["data_hum", "REAL"],["date", "TEXT"])
+    DatabaseManager.table_creation(database, "dht", table_string_DHT)
+    time.sleep(5)
 
 
 

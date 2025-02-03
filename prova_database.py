@@ -14,7 +14,9 @@ table_string=(["id","SERIAL PRIMARY KEY"],["name", "TEXT NOT NULL"],["cognome", 
 
 #DatabaseManager.update_value(database, "aquarium", 3, "name", 1)
 
-DatabaseManager.create_database(database, "qtaquarium")
+#DatabaseManager.create_database(database, "qtaquarium")
 
+data = DatabaseManager.read_all_values(database,"dht")
+print(data[-1])
 
 #database.insert_value("claudio",0,5,"Marta")
