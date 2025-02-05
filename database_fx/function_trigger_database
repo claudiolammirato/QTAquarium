@@ -1,0 +1,21 @@
+create trigger users_notify_trigger after
+insert
+or
+update
+    on
+    public.dht for each row execute function notify_new_user()
+
+
+
+    -- DROP FUNCTION public.notify_new_user();
+
+CREATE OR REPLACE FUNCTION public.notify_new_user()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+BEGIN
+  PERFORM pg_notify('users_notification', row_to_json(NEW)::text);
+  RETURN NEW;
+END;
+$function$
+;

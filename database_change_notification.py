@@ -15,16 +15,17 @@ conn = psycopg2.connect(database=settings_loaded['database']['name'],
 conn.set_isolation_level(psycopg2.extensions.ISOLATION_LEVEL_AUTOCOMMIT)
 
 curs = conn.cursor()
-curs.execute("LISTEN device_snapshot_change;")
+curs.execute("LISTEN users_notification;")
 
-print("Waiting for notifications on channel 'test'")
+print("Waiting for notifications on channel 'notification'")
 while True:
     if select.select([conn],[],[],5) == ([],[],[]):
-        print("Timeout")
+        #print("Timeout")
+        pass
     else:
         conn.poll()
         while conn.notifies:
             notify = conn.notifies.pop(0)
             print("Got NOTIFY:", notify.pid, notify.channel, notify.payload)
             y = json.loads(notify.payload)
-            print(y["stf_name"])
+            print(y)
