@@ -11,7 +11,7 @@ class MainWindow(QWidget, Ui_MainWindow):
         self.setupUi(self)
         self.setWindowTitle("Aquarium Smart")
 
-        self.dsbaquarium = DsbAquarium()
+        #self.dsbaquarium = DsbAquarium()
         self.berlaquarium = BerlAquarium()
       
         self.dsb_a.clicked.connect(self.dsb_a_launch)
@@ -20,11 +20,23 @@ class MainWindow(QWidget, Ui_MainWindow):
         self.settings.clicked.connect(self.settings_launch)
 
     def dsb_a_launch(self):
+        self.dsbaquarium = DsbAquarium()
         self.dsbaquarium.showMaximized()
         print("DSB!!!")
     
     def ber_a_launch(self):
+        self.berlaquarium = BerlAquarium()
         self.berlaquarium.showMaximized()
+        print("Berlinese!!!")
+    
+    def update_ber_a_launch_dht(self, temp, hum, t):
+        self.berlaquarium.berl_room_temperature.setText("Room Temperature: "+temp+"°C")
+        self.berlaquarium.berl_room_humidity.setText("Room Humidity: "+hum+"%")
+        self.berlaquarium.berl_time.setText("reading time: "+ t)
+        print("Berlinese!!!")
+
+    def update_ber_a_launch_ds(self, temp):
+        self.berlaquarium.berl_temperature.setText("Aquarium Temperature: "+temp+"°C")
         print("Berlinese!!!")
     
     def tests_launch(self):
