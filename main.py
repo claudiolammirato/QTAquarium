@@ -37,9 +37,10 @@ def main():
     t2.setDaemon(True)
     t2.start()
 
-    
+    window.resize(800,600);
+    window.show();
 
-    window.showMaximized()
+    #window.showMaximized()
 
     app.exec()
 
@@ -73,9 +74,11 @@ def database_check(window):
                 if y["aquarium_name"] == "Berlinese":
                     if y["sensor_type"] == "DHT":
                         window.update_ber_a_launch_dht(str(y["data_temp"]), str(y["data_hum"]), str(y["date"]))
-                elif y["aquarium_name"] == "Berlinese":
+                        print("dht update!!!)")
+                if y["aquarium_name"] == "Berlinese":
                     if y["sensor_type"] == "DS18B20":
                         window.update_ber_a_launch_ds(str(y["data_temp"]))
+                        print("ds update!!!")
 
 
 if __name__ == "__main__":

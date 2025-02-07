@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QSizePolicy,
-    QWidget)
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtWidgets import (QApplication, QDialog, QFrame, QLabel,
+    QSizePolicy, QWidget)
 
 class Ui_BerlAquarium(object):
     def setupUi(self, BerlAquarium):
@@ -35,6 +36,29 @@ class Ui_BerlAquarium(object):
         self.berl_time = QLabel(BerlAquarium)
         self.berl_time.setObjectName(u"berl_time")
         self.berl_time.setGeometry(QRect(40, 160, 260, 16))
+        self.frame = QFrame(BerlAquarium)
+        self.frame.setObjectName(u"frame")
+        self.frame.setGeometry(QRect(20, 10, 600, 200))
+        palette = QPalette()
+        brush = QBrush(QColor(54, 54, 54, 255))
+        brush.setStyle(Qt.SolidPattern)
+        palette.setBrush(QPalette.Active, QPalette.Base, brush)
+        palette.setBrush(QPalette.Inactive, QPalette.Base, brush)
+        self.frame.setPalette(palette)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
+        self.berl_graph = QWidget(BerlAquarium)
+        self.berl_graph.setObjectName(u"berl_graph")
+        self.berl_graph.setGeometry(QRect(20, 230, 591, 221))
+        self.berl_graph_2 = QWebEngineView(self.berl_graph)
+        self.berl_graph_2.setObjectName(u"berl_graph_2")
+        self.berl_graph_2.setGeometry(QRect(9, 9, 581, 211))
+        self.frame.raise_()
+        self.berl_temperature.raise_()
+        self.berl_room_temperature.raise_()
+        self.berl_room_humidity.raise_()
+        self.berl_time.raise_()
+        self.berl_graph.raise_()
 
         self.retranslateUi(BerlAquarium)
 

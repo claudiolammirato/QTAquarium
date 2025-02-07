@@ -21,12 +21,16 @@ class MainWindow(QWidget, Ui_MainWindow):
 
     def dsb_a_launch(self):
         self.dsbaquarium = DsbAquarium()
-        self.dsbaquarium.showMaximized()
+        self.dsbaquarium.resize(800,600);
+        self.dsbaquarium.show();
+        #self.dsbaquarium.showMaximized()
         print("DSB!!!")
     
     def ber_a_launch(self):
         self.berlaquarium = BerlAquarium()
-        self.berlaquarium.showMaximized()
+        self.berlaquarium.resize(800,600);
+        self.berlaquarium.show();
+        #self.berlaquarium.showMaximized()
         print("Berlinese!!!")
     
     def update_ber_a_launch_dht(self, temp, hum, t):
