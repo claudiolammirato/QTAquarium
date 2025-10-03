@@ -3,6 +3,7 @@ from ui_mainwindow import Ui_MainWindow
 from dsb_aquarium import DsbAquarium
 from berl_aquarium import BerlAquarium
 from settings import Settings
+from  tests import Tests
 
 
 class MainWindow(QWidget, Ui_MainWindow):
@@ -45,7 +46,9 @@ class MainWindow(QWidget, Ui_MainWindow):
         print("Berlinese!!!")
     
     def tests_launch(self):
-        
+        self.berlaquarium = Tests()
+        self.berlaquarium.resize(800,600);
+        self.berlaquarium.show();
         print("Tests!!!")
     
     def settings_launch(self):
