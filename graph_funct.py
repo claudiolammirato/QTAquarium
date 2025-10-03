@@ -12,5 +12,10 @@ def plot_graph():
     print(df)
 
 
-    fig = px.line(df[-48:], x="date" , y="data_temp") 
+    fig = px.line(df[-48:], x="date" , y="data_temp", markers=True) 
+    fig.update_layout(title=dict(text="Dsb Aquarium Temperature"),xaxis=dict(title=dict(text="Date")),yaxis=dict(title=dict(text="Temperature")),font=dict(family="Courier New, monospace",size=9,color="RebeccaPurple"))
+    fig.update_yaxes(showgrid=True)
+    fig.update_yaxes(range=[20, 33])
+    fig.update_layout(margin=dict(l=20, r=20, t=20, b=20),paper_bgcolor="LightSteelBlue",)
+
     return fig

@@ -15,15 +15,15 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QTextEdit,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QLabel, QPushButton, QSizePolicy,
+    QTextEdit, QWidget)
 
 class Ui_Settings(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(640, 480)
-        self.label = QLabel(Form)
+    def setupUi(self, Settings):
+        if not Settings.objectName():
+            Settings.setObjectName(u"Settings")
+        Settings.resize(640, 480)
+        self.label = QLabel(Settings)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(260, 0, 101, 51))
         font = QFont()
@@ -31,10 +31,10 @@ class Ui_Settings(object):
         font.setBold(True)
         font.setItalic(False)
         self.label.setFont(font)
-        self.ip_database = QTextEdit(Form)
+        self.ip_database = QTextEdit(Settings)
         self.ip_database.setObjectName(u"ip_database")
         self.ip_database.setGeometry(QRect(170, 60, 211, 31))
-        self.label_2 = QLabel(Form)
+        self.label_2 = QLabel(Settings)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(93, 65, 71, 16))
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
@@ -43,35 +43,39 @@ class Ui_Settings(object):
         sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-        self.ip_dsb = QTextEdit(Form)
+        self.ip_dsb = QTextEdit(Settings)
         self.ip_dsb.setObjectName(u"ip_dsb")
         self.ip_dsb.setGeometry(QRect(170, 103, 211, 31))
-        self.label_3 = QLabel(Form)
+        self.label_3 = QLabel(Settings)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(73, 108, 91, 20))
         sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-        self.label_4 = QLabel(Form)
+        self.label_4 = QLabel(Settings)
         self.label_4.setObjectName(u"label_4")
         self.label_4.setGeometry(QRect(53, 152, 111, 20))
         sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
         self.label_4.setAlignment(Qt.AlignmentFlag.AlignRight|Qt.AlignmentFlag.AlignTrailing|Qt.AlignmentFlag.AlignVCenter)
-        self.ip_berlinese = QTextEdit(Form)
+        self.ip_berlinese = QTextEdit(Settings)
         self.ip_berlinese.setObjectName(u"ip_berlinese")
         self.ip_berlinese.setGeometry(QRect(170, 147, 211, 31))
+        self.saveButton = QPushButton(Settings)
+        self.saveButton.setObjectName(u"saveButton")
+        self.saveButton.setGeometry(QRect(190, 270, 75, 24))
 
-        self.retranslateUi(Form)
+        self.retranslateUi(Settings)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(Settings)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"Settings", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"Database IP:", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"Sensor DSB IP:", None))
-        self.label_4.setText(QCoreApplication.translate("Form", u"Sensor Berlinese IP:", None))
+    def retranslateUi(self, Settings):
+        Settings.setWindowTitle(QCoreApplication.translate("Settings", u"Form", None))
+        self.label.setText(QCoreApplication.translate("Settings", u"Settings", None))
+        self.label_2.setText(QCoreApplication.translate("Settings", u"Database IP:", None))
+        self.label_3.setText(QCoreApplication.translate("Settings", u"Sensor DSB IP:", None))
+        self.label_4.setText(QCoreApplication.translate("Settings", u"Sensor Berlinese IP:", None))
+        self.saveButton.setText(QCoreApplication.translate("Settings", u"Save", None))
     # retranslateUi
 

@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>DSB Aquarium</string>
+   <string>Berlinese Aquarium</string>
   </property>
   <widget class="QLabel" name="dsb_temperature">
    <property name="geometry">
     <rect>
      <x>40</x>
      <y>30</y>
-     <width>49</width>
+     <width>260</width>
      <height>16</height>
     </rect>
    </property>
@@ -31,7 +31,7 @@
     <rect>
      <x>40</x>
      <y>70</y>
-     <width>49</width>
+     <width>260</width>
      <height>16</height>
     </rect>
    </property>
@@ -44,7 +44,7 @@
     <rect>
      <x>40</x>
      <y>110</y>
-     <width>49</width>
+     <width>260</width>
      <height>16</height>
     </rect>
    </property>
@@ -52,7 +52,97 @@
     <string>TextLabel</string>
    </property>
   </widget>
+  <widget class="QLabel" name="dsb_time">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>160</y>
+     <width>260</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>600</width>
+     <height>200</height>
+    </rect>
+   </property>
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>54</red>
+         <green>54</green>
+         <blue>54</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Base">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>54</red>
+         <green>54</green>
+         <blue>54</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled/>
+    </palette>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Shape::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Shadow::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QWidget" name="berl_graph" native="true">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>591</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <widget class="QWebEngineView" name="dsb_graph" native="true">
+    <property name="geometry">
+     <rect>
+      <x>9</x>
+      <y>9</y>
+      <width>581</width>
+      <height>211</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>dsb_temperature</zorder>
+  <zorder>dsb_room_temperature</zorder>
+  <zorder>dsb_room_humidity</zorder>
+  <zorder>dsb_time</zorder>
+  <zorder>berl_graph</zorder>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header>qwebengineview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

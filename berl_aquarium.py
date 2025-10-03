@@ -8,8 +8,6 @@ import os
 from graph_funct import plot_graph
  
  
-
-
 class BerlAquarium(QDialog, Ui_BerlAquarium):
     def __init__(self):
         super().__init__()
