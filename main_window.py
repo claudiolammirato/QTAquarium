@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QWidget, QPushButton
 from ui_mainwindow import Ui_MainWindow
 from dsb_aquarium import DsbAquarium
 from berl_aquarium import BerlAquarium
+from settings import Settings
 
 
 class MainWindow(QWidget, Ui_MainWindow):
@@ -9,7 +10,7 @@ class MainWindow(QWidget, Ui_MainWindow):
         super().__init__()
         
         self.setupUi(self)
-        self.setWindowTitle("Aquarium Smart")
+        self.setWindowTitle("Smart Aquarium")
 
         #self.dsbaquarium = DsbAquarium()
         self.berlaquarium = BerlAquarium()
@@ -44,9 +45,13 @@ class MainWindow(QWidget, Ui_MainWindow):
         print("Berlinese!!!")
     
     def tests_launch(self):
+        
         print("Tests!!!")
     
     def settings_launch(self):
+        self.berlaquarium = Settings()
+        self.berlaquarium.resize(800,600);
+        self.berlaquarium.show();
         print("Settings!!!")
         
   

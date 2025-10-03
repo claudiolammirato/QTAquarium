@@ -15,10 +15,11 @@ from setting_class import ConfigClass
 
 def main():
     #DATABASE Settings
+    database = DatabaseManager()
     create_database("qtaquarium")
 
     #CREATE Tables
-    database = DatabaseManager()
+    
     #CREATE TABLE IF NOT EXISTS
     table_string_DS18=(["id","SERIAL PRIMARY KEY"],["aquarium_name", "TEXT"],["sensor_type", "TEXT"], ["data_temp", "REAL"],["date", "TEXT"])
     DatabaseManager.table_creation(database, "ds18", table_string_DS18)

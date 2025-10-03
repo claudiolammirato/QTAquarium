@@ -8,17 +8,18 @@ class DatabaseManager():
         settings = ConfigClass()
         settings_loaded = settings.load_item("settings")
 
-        self.conn = psycopg2.connect(database=settings_loaded['database']['name'],
-                        host=settings_loaded["database"]["url"],
-                        user=settings_loaded["database"]["username"],
-                        password=settings_loaded["database"]["password"],
-                        port=settings_loaded["database"]["port"])
+        try:
+            self.conn = psycopg2.connect(database=settings_loaded['database']['name'],
+                                host=settings_loaded["database"]["url"],
+                                user=settings_loaded["database"]["username"],
+                                password=settings_loaded["database"]["password"],
+                                port=settings_loaded["database"]["port"])
 
-        self.cursor = self.conn.cursor()
-
-    
-
-
+            self.cursor = self.conn.cursor()
+        except:
+            print("class out")
+            self.__init__()    
+   
 
     #FUNCTION TO CREATE TABLE
     def table_creation(self, table_name, table_string):
