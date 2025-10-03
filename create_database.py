@@ -37,6 +37,6 @@ def create_database(database_name):
         conn.close()
         print("Database Created!!!")
     except:
-        print("Database already exist or not connected")
+        print("Database already exist")
         
         

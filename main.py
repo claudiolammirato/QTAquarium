@@ -27,7 +27,11 @@ def main():
     table_string_DHT=(["id","SERIAL PRIMARY KEY"],["aquarium_name", "TEXT"],["sensor_type", "TEXT"], ["data_temp", "REAL"],["data_hum", "REAL"],["date", "TEXT"])
     DatabaseManager.table_creation(database, "dht", table_string_DHT)
     time.sleep(5)
-    print("here")
+    table_tests=(["id","SERIAL PRIMARY KEY"],["test_type", "TEXT"],["test_value", "REAL"],["date", "TEXT"])
+    DatabaseManager.table_creation(database, "tests", table_tests)
+    time.sleep(5)
+
+    print("Table Created")
 
     #GUI Settings
     app =QtWidgets.QApplication(sys.argv)
@@ -71,7 +75,7 @@ def database_check(window):
                 notify = conn.notifies.pop(0)
                 print("Got NOTIFY:", notify.pid, notify.channel, notify.payload)
                 y = json.loads(notify.payload)
-                print(y)
+                #print(y)
                 if y["aquarium_name"] == "Berlinese":
                     if y["sensor_type"] == "DHT":
                         window.update_ber_a_launch_dht(str(y["data_temp"]), str(y["data_hum"]), str(y["date"]))

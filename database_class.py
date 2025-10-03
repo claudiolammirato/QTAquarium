@@ -29,7 +29,7 @@ class DatabaseManager():
         for x in table_string:
             testo = testo + x[0]+" "+x[1]+ ","
         testo = testo[0:-1] + ");"
-        #print(testo)
+        print(testo)
 
         table_creation = testo
         try:
@@ -79,7 +79,7 @@ class DatabaseManager():
     #FUNCTION TO UPDATE VALUES
     def update_value(self, table_name,id,field,value):
         update_value = '''UPDATE '''+table_name+''' SET '''+field+'''=%s WHERE id='''+str(id)+''';'''
-        print(update_value)
+        #print(update_value)
         self.cursor.execute(update_value, (value,))
         self.conn.commit()
         self.cursor.close()
@@ -90,7 +90,7 @@ class DatabaseManager():
     #FUNCTION TO READ ALL VALUES
     def read_all_values(self, table_name):
         update_value = '''SELECT * FROM '''+table_name+''';'''
-        print(update_value)
+        #print(update_value)
         self.cursor.execute(update_value)
         data = self.cursor.fetchall()
         #self.cursor.close()
