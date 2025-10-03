@@ -15,24 +15,34 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QPushButton,
+    QSizePolicy, QTextEdit, QWidget)
 
 class Ui_Tests(object):
-    def setupUi(self, Form):
-        if not Form.objectName():
-            Form.setObjectName(u"Form")
-        Form.resize(640, 480)
-        self.label = QLabel(Form)
-        self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(280, 150, 211, 16))
+    def setupUi(self, Tests):
+        if not Tests.objectName():
+            Tests.setObjectName(u"Tests")
+        Tests.resize(640, 480)
+        self.insertButton = QPushButton(Tests)
+        self.insertButton.setObjectName(u"insertButton")
+        self.insertButton.setGeometry(QRect(20, 90, 75, 24))
+        self.dateEdit = QDateEdit(Tests)
+        self.dateEdit.setObjectName(u"dateEdit")
+        self.dateEdit.setGeometry(QRect(20, 30, 113, 24))
+        self.comboBox_test_type = QComboBox(Tests)
+        self.comboBox_test_type.setObjectName(u"comboBox_test_type")
+        self.comboBox_test_type.setGeometry(QRect(170, 30, 73, 24))
+        self.textEdit = QTextEdit(Tests)
+        self.textEdit.setObjectName(u"textEdit")
+        self.textEdit.setGeometry(QRect(277, 33, 104, 21))
 
-        self.retranslateUi(Form)
+        self.retranslateUi(Tests)
 
-        QMetaObject.connectSlotsByName(Form)
+        QMetaObject.connectSlotsByName(Tests)
     # setupUi
 
-    def retranslateUi(self, Form):
-        Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"Tests Claudio", None))
+    def retranslateUi(self, Tests):
+        Tests.setWindowTitle(QCoreApplication.translate("Tests", u"Form", None))
+        self.insertButton.setText(QCoreApplication.translate("Tests", u"Insert", None))
     # retranslateUi
 

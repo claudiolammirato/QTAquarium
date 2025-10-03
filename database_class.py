@@ -36,8 +36,8 @@ class DatabaseManager():
             self.cursor.execute(table_creation)
             self.conn.commit()
             print("Table Created!!!")
-        except:
-            print("error - might already exists")
+        except psycopg2.Error as e:
+            print(e)
         self.cursor.close()
         self.conn.close()
 
