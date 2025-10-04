@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QPushButton,
-    QSizePolicy, QTextEdit, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QHeaderView,
+    QPushButton, QSizePolicy, QTableWidget, QTableWidgetItem,
+    QTextEdit, QWidget)
 
 class Ui_Tests(object):
     def setupUi(self, Tests):
@@ -35,6 +36,9 @@ class Ui_Tests(object):
         self.textEdit = QTextEdit(Tests)
         self.textEdit.setObjectName(u"textEdit")
         self.textEdit.setGeometry(QRect(277, 33, 104, 21))
+        self.tableNO2 = QTableWidget(Tests)
+        self.tableNO2.setObjectName(u"tableNO2")
+        self.tableNO2.setGeometry(QRect(30, 190, 256, 192))
 
         self.retranslateUi(Tests)
 
