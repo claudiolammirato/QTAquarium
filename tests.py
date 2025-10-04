@@ -1,5 +1,5 @@
 from PySide6.QtCore import Qt, QDateTime, QDate
-from PySide6.QtWidgets import QDialog, QComboBox, QTableWidgetItem 
+from PySide6.QtWidgets import QDialog, QComboBox, QTableWidgetItem, QAbstractScrollArea
 from ui_tests import Ui_Tests
 from database_class import DatabaseManager
 
@@ -25,7 +25,9 @@ class Tests(QDialog, Ui_Tests):
         database = DatabaseManager()
 
         values = DatabaseManager.read_all_values(database,"tests")
-        print(values[0])
+        #print(values[0])
+        
+
         self.tableNO2.setRowCount(len(values))
         self.tableNO2.setColumnCount(3)
         self.tableNO2.setHorizontalHeaderLabels(["Test", "Value", "Date"])  
@@ -41,7 +43,8 @@ class Tests(QDialog, Ui_Tests):
             self.tableNO2.setItem(i, 1, item_value)
             self.tableNO2.setItem(i, 2, item_date)
 
-
+        self.tableNO2.setSizeAdjustPolicy(QAbstractScrollArea.AdjustToContents)
+        self.tableNO2.resizeColumnsToContents()
         self.insertButton.clicked.connect(self.save_settings)
         
 
@@ -52,3 +55,21 @@ class Tests(QDialog, Ui_Tests):
         save_values=(["test_type",self.comboBox_test_type.currentText()],["test_value",value], ["date",date_test.strftime("%Y-%m-%d %H:%M:%S")])
         database = DatabaseManager()
         DatabaseManager.insert_value(database, "tests", save_values)
+        #refresh table
+        database = DatabaseManager()
+        values = DatabaseManager.read_all_values(database,"tests")
+        #print(values[0])
+        self.tableNO2.setRowCount(len(values))
+        self.tableNO2.setColumnCount(3)
+        self.tableNO2.setHorizontalHeaderLabels(["Test", "Value", "Date"])  
+        for i in range(len(values)):
+            item_test = QTableWidgetItem(values[i][1])
+            #item_value = QTableWidgetItem(values[i][2])
+            #print(values[i][2])
+            item_date = QTableWidgetItem(values[i][3])
+
+            item_value = QTableWidgetItem()
+            item_value.setData(Qt.DisplayRole, values[i][2])
+            self.tableNO2.setItem(i, 0, item_test)
+            self.tableNO2.setItem(i, 1, item_value)
+            self.tableNO2.setItem(i, 2, item_date)

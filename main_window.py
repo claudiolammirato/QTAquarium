@@ -46,15 +46,15 @@ class MainWindow(QWidget, Ui_MainWindow):
         print("Berlinese!!!")
     
     def tests_launch(self):
-        self.berlaquarium = Tests()
-        self.berlaquarium.resize(800,600);
-        self.berlaquarium.show();
+        self.tests = Tests()
+        self.tests.resize(800,600);
+        self.tests.show();
         print("Tests!!!")
     
     def settings_launch(self):
-        self.berlaquarium = Settings()
-        self.berlaquarium.resize(800,600);
-        self.berlaquarium.show();
+        self.settings = Settings()
+        self.settings.resize(800,600);
+        self.settings.show();
         print("Settings!!!")
         
   
