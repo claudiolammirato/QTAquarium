@@ -30,11 +30,12 @@ class Tests(QDialog, Ui_Tests):
 
     def save_settings(self):
         
-        date = self.dateEdit.dateTime().toPython()
+        date_test = self.dateEdit.dateTime().toPython()
         value = self.textEdit.toPlainText()
-        save_values = [self.comboBox_test_type.currentText(), value, date.strftime("%Y-%m-%d %H:%M:%S")]
         print(value)
-        print(date.strftime("%Y-%m-%d %H:%M:%S"))
+        save_values=(["test_type",self.comboBox_test_type.currentText()],["test_value",value], ["date",date_test.strftime("%Y-%m-%d %H:%M:%S")])
+
+        print(date_test.strftime("%Y-%m-%d %H:%M:%S"))
         print(save_values)
         database = DatabaseManager()
         DatabaseManager.insert_value(database, "tests", save_values)

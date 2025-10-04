@@ -45,14 +45,15 @@ class DatabaseManager():
     def insert_value(self, table_name, values):
         
         testo='''INSERT INTO '''+table_name+''' ('''
-        
+        print(values)
+
         for x in values:
             if(x[0] != "id"):
                 testo = testo + x[0]+","
         testo = testo[0:-1] + ") VALUES("
+        print(testo)
         for x in values:
             if(x[0] != "id"):
-                print(x)
                 if(isinstance(x[1], str)):
                     testo = testo +"'"+x[1]+"'"+","
                 else:
